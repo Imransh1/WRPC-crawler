@@ -13,7 +13,7 @@ import requests
 import pdfplumber
 from io import BytesIO
 import pandas as pd
-# from paths import driver_path
+from paths import csv_path
 
 def wrpc_crawler(driver):
 
@@ -57,7 +57,7 @@ def crawl_all_years(driver,action):
             table = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.XPATH,"//li[contains(@class, 'nav-item')]")))  
             if table:
                 for year in table:
-                    print(year.text)
+                    print('Year: ',year.text)
                     year.click()
                     break
             else:
@@ -79,6 +79,7 @@ def crawl_weeks(driver,action):
                 week = tr.find_element(By.TAG_NAME, 'span') #"//span[contains(text(), 'week')]"
                 action.move_to_element(week).perform()
                 sleep(1)
+                print("Week: ",week.text)
                 week.click()
                 sleep(2)
 
@@ -118,5 +119,5 @@ def scrape_pdfs(driver,index):
     header = ['Date', 'Entity', 'Injection', 'Schedule', 'DSM Payable', 'DSM Receivable', 'Net DMC']
     
     df = pd.DataFrame(data, columns=header)
-    df.to_csv(f'Output-{index+1}.csv', index=False)
+    df.to_csv(f'{csv_path}/Output-{index+1}.csv', index=False)
 
