@@ -104,10 +104,8 @@ def scrape_pdfs(driver,index):
 
     data = []
 
-    # Use BytesIO to treat the response content as a file-like object
     with pdfplumber.open(BytesIO(response.content)) as pdf:
         
-        # Extract text from each page
         for this_index,page in enumerate(pdf.pages):
                 if this_index >19:
                     break
