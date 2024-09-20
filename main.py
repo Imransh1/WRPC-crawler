@@ -43,6 +43,7 @@ def main():
         print(traceback.format_exc())
     
     wrpc_crawler(driver)
+    # call crawler function in crawler.py
 
 
 if __name__ == "__main__":

@@ -90,8 +90,8 @@ def crawl_weeks(driver,action):
                 driver.close()
                 driver.switch_to.window(original_window)
 
-                if index == 1:
-                     break
+                # if index == 1:
+                #      break
         
         except:
             print("Error finding weeks\n", traceback.format_exc())
