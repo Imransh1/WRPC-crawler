@@ -21,9 +21,8 @@ def wrpc_crawler(driver):
 
     crawl_category_and_sub_category(driver,action)
     crawl_all_years(driver,action)
-    crawl_weeks(driver,action)
-    # sleep(2)
-    # driver.quit()
+    
+    driver.quit()
     
         
 
@@ -59,6 +58,7 @@ def crawl_all_years(driver,action):
                 for year in table:
                     print('Year: ',year.text)
                     year.click()
+                    crawl_weeks(driver,action)
                     break
             else:
                 print("No table found")  
